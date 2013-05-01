@@ -4,6 +4,10 @@ class Segment {
     Integer start
     Integer end
     Integer length
-    static constraints = {
+    static {
+        grails.converters.JSON.registerObjectMarshaller(Segment) {
+            def res = [id: it.id]
+            res << it.properties.findAll {k,v -> k != 'class'}
+        }
     }
 }
