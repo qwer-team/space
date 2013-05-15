@@ -1,6 +1,7 @@
 package gala
 
 class Segment {
+    static hasMany = [subtype: PointSubtype]
     Integer start
     Integer end
     Integer length
