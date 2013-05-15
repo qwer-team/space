@@ -8,11 +8,9 @@ class FillService {
     def persistenceInterceptor
     
     def fill(start, length, types) {
-        def first = start - 1
-        
         def subtypes = mix(length, types)
         def cnt = 0
-        def step = 4000
+        def step = 1000
         def st = System.currentTimeMillis()
         
         def fill = {
@@ -22,9 +20,9 @@ class FillService {
             def tx = session.beginTransaction()
             //def query = session.createSQLQuery("update point set subtype = :subtype where id = :id")
             //def queryStart = "UPDATE point SET subtype = CASE "
-            def queryStart = "INSERT INTO point (id, subtype) VALUES "
+            def queryStart = "INSERT INTO point (id, subtype, version) VALUES "
             //def queryEnd = "END WHERE id in"
-            def queryEnd = " ON DUPLICATE KEY UPDATE point.subtype = VALUES(subtype), point.version = point.version"
+            def queryEnd = " ON DUPLICATE KEY UPDATE point.subtype = VALUES(subtype)"
          //   def query = session.createSQLQuery("UPDATE tbl_country SET price = CASE
 //WHEN code = 1 THEN 123;")
             (strt..<endd).step(step){
@@ -42,7 +40,7 @@ class FillService {
                 def ids = []
                 ((offset+1)..(offset+max)).each{
                     //def update = " WHEN id = ${it} THEN ${subtypes[cnt++]} "
-                    def update = " ( ${it}, ${subtypes[cnt++]}) "
+                    def update = " ( ${it}, ${subtypes[cnt++]}, 0) "
                     ids << it
                     updates << update
                     //query.setParameter("subtype", subtypes[cnt])
@@ -57,7 +55,7 @@ class FillService {
                 query.executeUpdate()
                 //session.flush()
                 //session.clear()
-                def end = System.currentTimeMillis()
+                //def end = System.currentTimeMillis()
                 //log.info "$it: ${end-st}"
             }
 
@@ -68,7 +66,7 @@ class FillService {
         }
         GParsPool.withPool {
             def diaps = []
-            def segCnt = 5
+            def segCnt = 3
             def len = (int)length / segCnt
             def frst = 0
 	    def sl = 0 
@@ -84,7 +82,7 @@ class FillService {
             }
             
             diaps.eachParallel{
-	        System.sleep(1000*it[2])
+	        System.sleep(800*it[2])
                 fill(it[0], it[1])
             }
         }
