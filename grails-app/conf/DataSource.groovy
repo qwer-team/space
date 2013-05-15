@@ -18,7 +18,7 @@ environments {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/gala"
             driverClassName = "org.gjt.mm.mysql.Driver"
-            logSql = false
+            logSql = true
         }
     }
     test {
