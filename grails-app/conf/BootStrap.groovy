@@ -1,7 +1,7 @@
 import grails.converters.JSON
 import gala.Segment
-import gala.PointSubtype
-import gala.PointType
+import gala.Subtype
+import gala.Type
 class BootStrap {
 
     def filter( domain, exclude = []){
@@ -13,10 +13,10 @@ class BootStrap {
         JSON.registerObjectMarshaller(Segment) {
             def res = [id: it.id, end: it.end, start: it.start, length: it.length]
         }
-        JSON.registerObjectMarshaller(PointSubtype) {
-            filter(it, ['segment'])
+        JSON.registerObjectMarshaller(Subtype) {
+            filter(it, ['segment', 'type'])
         }
-        JSON.registerObjectMarshaller(PointType) {
+        JSON.registerObjectMarshaller(Type) {
             filter(it, ['subtypes'])
         }
     }
