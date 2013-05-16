@@ -2,7 +2,7 @@ package gala
 
 import grails.converters.JSON
 
-class PointTypeController {
+class TypeController {
 
     def index() { }
 }
