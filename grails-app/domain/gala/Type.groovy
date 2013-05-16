@@ -1,8 +1,8 @@
 package gala
 
-class PointType {
+class Type {
     
-    static hasMany = [subtypes: PointSubtype]
+    static hasMany = [subtypes: Subtype]
     
     String name
     /*static {

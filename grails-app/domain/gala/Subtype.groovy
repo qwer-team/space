@@ -1,8 +1,8 @@
 package gala
 
-class PointSubtype {
+class Subtype {
     
-    PointType type
+    Type type
     Segment segment
     
     Integer pointsCount
