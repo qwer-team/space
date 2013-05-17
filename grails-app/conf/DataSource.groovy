@@ -8,6 +8,7 @@ hibernate {
     cache.use_second_level_cache = true
     cache.use_query_cache = false
     cache.region.factory_class = 'net.sf.ehcache.hibernate.EhCacheRegionFactory'
+    max_fetch_depth = 3
 }
 // environment specific settings
 environments {
@@ -18,7 +19,7 @@ environments {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/gala"
             driverClassName = "org.gjt.mm.mysql.Driver"
-            logSql = true
+            logSql = false
         }
     }
     test {

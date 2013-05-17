@@ -9,4 +9,7 @@ class Subtype {
     Boolean block
     Boolean restore
     
+    static constraints = {
+        segment nullable: true
+    }
 }
