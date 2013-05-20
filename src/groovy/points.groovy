@@ -7,7 +7,7 @@ tx = session.beginTransaction()
 rand = new Random()
 st = System.currentTimeMillis()
 for ( int i = 0; i < 1000000; i++ ) {
-    point = new Point(subtype : rand.nextInt(100))
+    point = new Point(subtype : 0)
     session.save(point)
     if ( i % 1000 == 0 ) {
         session.flush()

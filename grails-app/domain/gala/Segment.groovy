@@ -1,7 +1,7 @@
 package gala
 
 class Segment {
-    static hasMany = [subtype: Subtype]
+    static hasMany = [subtypes: Subtype]
     Integer start
     Integer end
     Integer length
