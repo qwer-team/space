@@ -3,25 +3,29 @@ import gala.Point
 session = ctx.sessionFactory.currentSession
 
 starts = System.currentTimeMillis()
-tx = session.beginTransaction()
+
 rand = new Random()
 st = System.currentTimeMillis()
-for ( int i = 0; i < 1000000; i++ ) {
-    point = new Point(subtype : 0)
-    session.save(point)
-    if ( i % 1000 == 0 ) {
-        session.flush()
-        session.clear()
+pointss = []
+insert  = 'insert into point (version, subtype) VALUES '
+for ( int i = 0; i < 7000000; i++ ) {
+    pointss << '(0, 0)'
+    if ( i % 50000 == 0 ) {
+        tx = session.beginTransaction()
+        queryStr = insert + pointss.join(',')
+        query = session.createSQLQuery(queryStr)
+        query.executeUpdate()
         en = System.currentTimeMillis()
         println "-------"
         println en - st
         println i
         println "-------"
-        st = System.currentTimeMillis()
+        //st = System.currentTimeMillis()
+        tx.commit()
     }
 }
 
-tx.commit()
+
 
 end = System.currentTimeMillis()
 println end - starts

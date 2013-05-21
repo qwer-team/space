@@ -4,15 +4,26 @@ import groovyx.gpars.GParsPool
 import space.ArrayMix
 class FillService {
     static transactional = false
+    def inWork = false 
     def sessionFactory 
     def persistenceInterceptor
     def segmentId
     def fillSegment(Segment segment){
+        if(inWork){
+            println 'mafaka!';
+            return
+        } else {
+            println 'stfill!'
+            inWork = true
+        }
         def types = getTypes(segment.subtypes)
         segmentId = segment.id
+        println types
         fill(segment.start, segment.length, types)
+        inWork = false
     }
     def fill(start, length, types) {
+        println "fill $start, $length, $types"
         def subtypes = mix(length, types)
         def cnt = 0
         def step = 1000
@@ -29,8 +40,8 @@ class FillService {
             (strt..<endd).step(step){
                 def offset = start - 1 + it
                 def max = step
-                if(offset + step > endd){
-                    max = endd - offset
+                if(offset + step > start + endd){
+                    max = start + endd - offset
                 }
                 def queryString = queryStart
                 def updates = []
@@ -47,7 +58,7 @@ class FillService {
                 portion += step
                 if(portion >= 10000){
                     def data = [id: segmentId, portion: portion]
-                    event([namespace: "browser", topic: "loadingProgress", data: data])
+                    event([topic: "loadingProgressInfo", data: data])
                     portion = 0
                 }
             }
@@ -73,7 +84,7 @@ class FillService {
 		sl++
                 frst = end
             }
-            
+            println "diaps: $diaps"
             diaps.eachParallel{
 	        System.sleep(800*it[2])
                 fillit(it[0], it[1])
