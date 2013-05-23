@@ -1,7 +1,13 @@
 class UrlMappings {
 
 	static mappings = {
-            
+               "/type/show/$tag?"{
+                    controller = "type"
+                    action = "show"
+                    constraints{
+                        tag(nullable:false)
+                    }
+                }
                 "/segment/reset/$number?"{
                     controller = "segment"
                     action = "reset"

@@ -17,12 +17,14 @@ class SubtypeController {
     def save(Long id){
         def segment = Segment.get(id)
         def type = Type.get(params.typeId)
+        println params
         def props = [
             type: type, 
             segment: segment, 
             pointsCount: params.pointsCount,
-            block: params.block != null,
-            restore: params.restore != null] 
+            block: params.block != '',
+            restore: params.restore != ''
+        ] 
         def subtype = new Subtype(props)
         if(!subtype.save()){
             throw new Exception("subtype wasnt saved!!!");

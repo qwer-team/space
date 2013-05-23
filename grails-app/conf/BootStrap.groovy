@@ -17,7 +17,7 @@ class BootStrap {
             filter(it, ['segment', 'type'])
         }
         JSON.registerObjectMarshaller(Type) {
-            filter(it, ['subtypes'])
+            filter(it, ['subtypes', 'securityIdentity', 'securityInfo'])
         }
     }
     def destroy = {

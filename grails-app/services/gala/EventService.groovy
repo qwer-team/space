@@ -16,17 +16,23 @@ class EventService {
             initSegmentLoading(it)
         }
         progress = [:]
+        event([namespace: "browser", topic: "end", data: []])
     }
     @grails.events.Listener(namespace='browser') 
     initSegment(Map data){
         initSegmentLoading(Segment.get(data.segment))
         progress = [:]
+        event([namespace: "browser", topic: "endSegment", data: [id: data.segment]])
     }
     def initSegmentLoading(segment) {
         def response = [id: segment.id, length: segment.length]
-        
+        println segment
         progress[segment.id] = [length: segment.length, portion: 0]
+        try{
         event([namespace: "browser", topic: "startLoading", data: response])
+        } catch(e){
+            println e.message
+        }
         fillService.fillSegment(segment)
         progress[segment.id] = [length: segment.length, portion: segment.length]
         event([namespace: "browser", topic: "endLoading", data: response])

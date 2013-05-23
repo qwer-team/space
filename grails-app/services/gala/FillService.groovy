@@ -8,12 +8,14 @@ class FillService {
     def sessionFactory 
     def persistenceInterceptor
     def segmentId
+    private setInWork(inWork){
+        this.inWork = inWork
+    }
     def fillSegment(Segment segment){
         if(inWork){
-            println 'mafaka!';
+            println 'inWork!';
             return
         } else {
-            println 'stfill!'
             inWork = true
         }
         def types = getTypes(segment.subtypes)
