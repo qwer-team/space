@@ -17,6 +17,7 @@ types = [
     [name: "- Период приза", tag: 'minus_prize_period'],
     [name: "+ Период для всех", tag: 'plus_all_period'],
     [name: "- Период для всех", tag: 'minus_all_period'],
+    [name: "Cообщение", tag: 'message'],
 ]
 
 types.each{
