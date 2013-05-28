@@ -9,25 +9,26 @@ class TypeController {
     }
     
     def update(){
-        println params
         def type = Type.get(params.id)
-        type.message1 = params.message1
-        type.message2 = params.message2
-        type.message3 = params.message3
-        type.onCost = params.onCost != ''
-        type.cost = parseInt(params.cost)
-        type.onBet = params.onBet != ''
-        type.bet = parseInt(params.bet)
-        type.betType = parseInt(params.betType)
-        type.onReturn = params.onReturn != ''
-        type.returnValue = parseInt(params.returnValue)
-        type.returnInPercent = params.returnInPercent != ''
-        type.onNextStep = params.onNextStep != ''
-        type.nextStepValue = parseInt(params.nextStepValue) 
-        type.nextStepInPercent = params.nextStepValue != ''
-        type.hours = parseInt(params.hours) 
-        type.minutes = parseInt(params.minutes) 
-        type.save()
+        def includeList = [
+            'message1',
+            'message2',
+            'message3',
+            'onCost',
+            'cost',
+            'onBet',
+            'bet',
+            'betType',
+            'onReturn',
+            'returnValue',
+            'returnInPercent',
+            'nextStepValue',
+            'onNextStep',
+            'nextStepInPercent',
+            'hours',
+            'minutes',
+        ]
+        bindData(type, params, [include: includeList])
         render ([result: 'success'] as JSON)
     }
     
