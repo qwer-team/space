@@ -29,6 +29,7 @@ class TypeController {
             'minutes',
         ]
         bindData(type, params, [include: includeList])
+        type.save()
         render ([result: 'success'] as JSON)
     }
     
@@ -38,5 +39,15 @@ class TypeController {
     
     def list(){
         render Type.list() as JSON
+    }
+    
+    def updateCoords(){
+        def type = Type.get(params.id)
+        def includeList = [
+            'a', 'b', 'c', 'delta1', 'delta2'
+        ]
+        bindData(type, params, [include: includeList])
+        type.save()
+        render ([result: 'success'] as JSON)
     }
 }
