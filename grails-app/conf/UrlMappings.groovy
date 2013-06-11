@@ -1,6 +1,10 @@
 class UrlMappings {
 
 	static mappings = {
+               "/jump/proceed/$x/$y/$z"{
+                    controller = "jump"
+                    action = "proceed"
+               }
                "/type/show/$tag?"{
                     controller = "type"
                     action = "show"
