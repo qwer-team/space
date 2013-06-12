@@ -39,6 +39,7 @@ class SubtypeController {
         subtype.pointsCount = Integer.parseInt(params.pointsCount)
         subtype.block = params.block
         subtype.restore = params.restore
+        subtype.parameter = Integer.parseInt(params.parameter)
         
         if(!subtype.save()){
             throw new Exception("subtype wasnt updated!!!");
