@@ -34,4 +34,5 @@ class SegmentController {
         def response = [result: "success"]
         render response as JSON
     }
+    
 }

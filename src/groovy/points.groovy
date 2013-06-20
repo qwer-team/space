@@ -7,9 +7,9 @@ starts = System.currentTimeMillis()
 rand = new Random()
 st = System.currentTimeMillis()
 pointss = []
-insert  = 'insert into point (version, subtype) VALUES '
-for ( int i = 0; i < 7000000; i++ ) {
-    pointss << '(0, 0)'
+insert  = 'insert into point (subtype) VALUES '
+for ( int i = 0; i < 50001; i++ ) {
+    pointss << '(1)'
     if ( i % 50000 == 0 ) {
         tx = session.beginTransaction()
         queryStr = insert + pointss.join(',')
@@ -20,6 +20,7 @@ for ( int i = 0; i < 7000000; i++ ) {
         println en - st
         println i
         println "-------"
+        pointss = []
         //st = System.currentTimeMillis()
         tx.commit()
     }

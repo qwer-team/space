@@ -13,7 +13,7 @@
 <g:each in="${segments}" status="i" var="segment">
 <div class="row-fluid">
   <div class="segment_${segment.id} span2">
-    <button class="button btn" data-id="${segment.id}">Cегмент № ${segment.id}</button>
+    <button class="button btn" data-id="${segment.id}">Cегмент № ${i+1}</button>
   </div>
 </div>
   

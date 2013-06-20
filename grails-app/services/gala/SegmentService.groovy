@@ -5,6 +5,9 @@ class SegmentService {
     def space = 10000000
     def reset(number) {
         Segment.list().each{
+            it.subtypes.each{
+                it.segment = null
+            }
             it.delete()
         }
         

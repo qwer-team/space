@@ -23,7 +23,8 @@ class SubtypeController {
             segment: segment, 
             pointsCount: params.pointsCount,
             block: params.block != '',
-            restore: params.restore != ''
+            restore: params.restore != '',
+            parameter: params.parameter
         ] 
         def subtype = new Subtype(props)
         if(!subtype.save()){
