@@ -2,6 +2,10 @@ import grails.converters.JSON
 import gala.Segment
 import gala.Subtype
 import gala.Type
+import gala.Prize
+import gala.PrizeElement
+import gala.Subelement
+
 class BootStrap {
 
     def filter( domain, exclude = []){
@@ -18,6 +22,15 @@ class BootStrap {
         }
         JSON.registerObjectMarshaller(Type) {
             filter(it, ['subtypes', 'securityIdentity', 'securityInfo'])
+        }
+        JSON.registerObjectMarshaller(Prize) {
+            filter(it, [])
+        }
+        JSON.registerObjectMarshaller(PrizeElement) {
+            filter(it, ['prize'])
+        }
+        JSON.registerObjectMarshaller(Subelement) {
+            filter(it, ['element'])
         }
     }
     def destroy = {
