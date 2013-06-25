@@ -4,6 +4,7 @@ Type.list().each{
     it.delete()
 }
 types = [
+    [name: "Пустые", tag: 'empty'],
     [name: "Черные", tag: 'black'],
     [name: "Ловушка", tag: 'trap'],
     [name: "+%", tag: 'plus_percent'],
