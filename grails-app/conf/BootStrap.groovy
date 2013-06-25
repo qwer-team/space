@@ -10,6 +10,8 @@ class BootStrap {
 
     def filter( domain, exclude = []){
         exclude << "class"
+        exclude << "securityInfo"
+        exclude << "securityIdentity"
         def res = [id: domain.id]
         res << domain.properties.findAll {k,v ->  !(k in exclude) }
     }
@@ -30,7 +32,7 @@ class BootStrap {
             filter(it, ['prize'])
         }
         JSON.registerObjectMarshaller(Subelement) {
-            filter(it, ['element'])
+            filter(it, ['element', 'segment'])
         }
     }
     def destroy = {

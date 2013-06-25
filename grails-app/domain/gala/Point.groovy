@@ -5,5 +5,8 @@ class Point {
     Integer subelement
     static mapping = {
       version false
-  }
+    }
+    static constraints = {
+        subelement nullable: true
+    }
 }
