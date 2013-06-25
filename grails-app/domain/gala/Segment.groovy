@@ -5,4 +5,8 @@ class Segment {
     Integer start
     Integer end
     Integer length
+    
+    def getSubelements(){
+        subtypes
+    }
 }
