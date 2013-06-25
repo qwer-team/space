@@ -95,7 +95,7 @@ class SubelementController {
     def getPrizesOnSegment(Long id) {
         def segment = PrizeSegment.get(id)
         def response = [
-            types: Prizes.list(), 
+            types: Prize.list(), 
             subelements: Subelement.findAllBySegment(segment),
             length: segment.length]
         render response as JSON
