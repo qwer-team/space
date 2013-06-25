@@ -17,7 +17,7 @@ class SegmentController {
     }
     
     def list(){
-        render Segment.list() as JSON
+        render( Segment.list() as JSON)
     }
     
     def update(Long id){
