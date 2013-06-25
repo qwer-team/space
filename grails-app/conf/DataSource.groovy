@@ -18,7 +18,7 @@ environments {
             password = '123'
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/gala?useUnicode=yes&characterEncoding=UTF-8"
-            driverClassName = "org.gjt.mm.mysql.Driver"
+            driverClassName = "com.mysql.jdbc.Driver"
             logSql = false
         }
     }
