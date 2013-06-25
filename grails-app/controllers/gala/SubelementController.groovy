@@ -14,8 +14,13 @@ class SubelementController {
         render list as JSON
     }
     
-    def addSingleSubelement(Integer id){
-        def element = PrizeElement.get(id)
+    def addSingle(){
+        def point = Point.get(params.pointId)
+        if(point.subelement != null){
+            println 'fail'
+            return render([result: 'fail'] as JSON)
+        }
+        def element = PrizeElement.get(params.element)
         def data = [
             element: element, 
             single: true, 
@@ -26,10 +31,14 @@ class SubelementController {
         def subelement = new Subelement(data)
         
         if(subelement.save()){
-            def point = Point.get(params.pointId)
+            
             point.subelement = subelement.id
+        } else {
+            subelement.errors.each{
+                println it
+            } 
         }
-        render([result: success] as JSON)
+        render([result: 'success'] as JSON)
     }
     
     def updateSingle(Integer id){
@@ -40,13 +49,13 @@ class SubelementController {
         if(newPoint.subelement == null){
             newPoint.subelement = id
             oldPoint.subelement = null
-            subelement.pointId = params.pointId
+            subelement.pointId = newPoint.id
             if(!(oldPoint.save() && newPoint.save() && subelement.save())){
                 throw new Exception('single subelement was not updated')
             }
-        }
+        } 
         
-        render([result: success] as JSON)
+        render([result: 'success'] as JSON)
     }
     
     def save(Long id){
@@ -62,7 +71,7 @@ class SubelementController {
         ] 
         def subelement = new Subelement(props)
         if(!subelement.save()){
-            throw new Exception("subtype wasnt saved!!!");
+            throw new Exception("subelement wasnt saved!!!");
         } 
         
         def resp = [result: "success"]
@@ -76,9 +85,9 @@ class SubelementController {
         subtype.restore = params.restore
         
         if(!subtype.save()){
-            throw new Exception("subtype wasnt updated!!!");
+            throw new Exception("subelement wasnt updated!!!");
         }
-        println 'subtype updated'
+        println 'subelement updated'
         def resp = [result: "success"]
         render resp as JSON
     }
