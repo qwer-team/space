@@ -9,6 +9,11 @@ class SubelementController {
         render list as JSON
     }
     
+    def list(){
+        def list = Subelement.findAllBySingle(false)
+        render list as JSON
+    }
+    
     def addSingleSubelement(Integer id)
     {
         def element = PrizeElement.get(id)

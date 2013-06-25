@@ -1,6 +1,7 @@
 package gala
 
 class Subelement {
+    PrizeSegment segment
     PrizeElement element
     Integer prizeCount
     Boolean restore
@@ -9,6 +10,7 @@ class Subelement {
     
     static constraints = {
         pointId nullable: true
+        segment nullable: true
     }
 }
 
