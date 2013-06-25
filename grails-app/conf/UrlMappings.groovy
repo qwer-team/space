@@ -19,6 +19,13 @@ class UrlMappings {
                         number(matches:/\d+/)
                     }
                 }
+                "/prizeSegment/reset/$number?"{
+                    controller = "prizeSegment"
+                    action = "reset"
+                    constraints{
+                        number(matches:/\d+/)
+                    }
+                }
 		"/$controller/$action?/$id?"{
 			constraints {
 				action(notEqual:"reset")

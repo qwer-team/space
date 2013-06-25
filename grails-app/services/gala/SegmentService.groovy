@@ -3,7 +3,8 @@ package gala
 class SegmentService {
     static transactional = true
     def space = 10000000
-    def domainClassname = "gala.Segmenet";
+    def domainClassname = "gala.Segment";
+    def grailsApplication
     def reset(number) {
         getDomainClass().list().each{
             it.subtypes.each{
@@ -21,7 +22,9 @@ class SegmentService {
                 length += modulo
             }
             def end = start + length - 1
-            new Segment(start: start, end: end, length: length).save()
+            def segment = getNewInstance()
+            segment.properties = [start: start, end: end, length: length]
+            segment.save()
             start = end + 1
         }
     }
@@ -45,6 +48,9 @@ class SegmentService {
         }
     }
     
+    def getNewInstance(){
+        grailsApplication.getArtefact("Domain", domainClassname)?.newInstance()
+    }
     def getDomainClass(){
         grailsApplication.getArtefact("Domain", domainClassname)?.getClazz()
     }

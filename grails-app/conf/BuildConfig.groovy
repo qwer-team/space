@@ -43,7 +43,7 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
-        // runtime 'mysql:mysql-connector-java:5.1.20'
+        runtime 'mysql:mysql-connector-java:5.1.20'
         compile 'org.codehaus.gpars:gpars:1.0.0'
         compile 'org.atmosphere:atmosphere-runtime:1.1.0.RC2'
     }
@@ -63,9 +63,8 @@ grails.project.dependency.resolution = {
 
         runtime ":database-migration:1.2.1"
 
-        compile ':cache:1.0.1'
+        //compile ':cache:1.0.1'
         compile ":twitter-bootstrap:2.3.0"
-        compile ":mysql-connectorj:5.1.22.1"
-        
+        //runtime ":mysql-connectorj:5.1.22.1"
     }
 }
