@@ -11,6 +11,7 @@ class PrizeSegmentController {
             segmentService.reset(number)
             response = [result: "success"]
         } catch (Exception e) {
+            println e.getMessage()
             response = [result: "fail"]
         }
         render response as JSON

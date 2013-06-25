@@ -7,7 +7,7 @@ class SegmentService {
     def grailsApplication
     def reset(number) {
         getDomainClass().list().each{
-            it.subtypes.each{
+            it.subelements.each{
                 it.segment = null
             }
             it.delete()
