@@ -35,7 +35,7 @@ class FillService {
             persistenceInterceptor.init()
             def session = sessionFactory.currentSession
             def tx = session.beginTransaction()
-            def queryStart = "INSERT INTO point (id, subtype, version) VALUES "
+            def queryStart = "INSERT INTO point (id, subtype) VALUES "
             def queryEnd = " ON DUPLICATE KEY UPDATE point.subtype = VALUES(subtype)"
             
             def portion = step;
@@ -49,7 +49,7 @@ class FillService {
                 def updates = []
                 def ids = []
                 ((offset+1)..(offset+max)).each{
-                    def update = " ( ${it}, ${subtypes[cnt++]}, 0) "
+                    def update = " ( ${it}, ${subtypes[cnt++]}) "
                     ids << it
                     updates << update
                 }
