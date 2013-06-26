@@ -12,21 +12,24 @@ class PrizeElement {
     String img2
     Integer movingVariant
     Boolean blocked = false
-    Integer a1
-    Integer a2
-    Integer a3
-    Integer b1
-    Integer b2
-    Integer b3
-    Integer c1
-    Integer c2
-    Integer c3
-    Integer delta1
-    Integer delta2
-    Integer delta3
+    Integer a1 = 5
+    Integer a2 = 5
+    Integer a3 = 5
+    Integer b1 = 5
+    Integer b2 = 5
+    Integer b3 = 5
+    Integer c1 = 5
+    Integer c2 = 5
+    Integer c3 = 5
+    Integer delta1 = 25
+    Integer delta2 = 25
+    Integer delta3 = 25
     
     static constraints = {
         img1 nullable: true
         img2 nullable: true
+    }
+    static mapping = {
+        sort "name"
     }
 }

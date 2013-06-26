@@ -18,4 +18,8 @@ class Prize {
         img1 nullable: true
         img2 nullable: true
     }
+    static mapping = {
+        elements sort: 'name'
+        sort "name"
+    }
 }
