@@ -1,9 +1,11 @@
 import gala.Type
+import gala.Subtype
 
 Type.list().each{
     it.delete()
 }
 types = [
+    [name: "Точка ничего", tag: 'nihil'],
     [name: "Пустые", tag: 'empty'],
     [name: "Черные", tag: 'black'],
     [name: "Ловушка", tag: 'trap'],
@@ -22,5 +24,8 @@ types = [
 ]
 
 types.each{
-    new Type(name: it.name, tag: it.tag).save()
+    type = new Type(name: it.name, tag: it.tag).save()
+    if(type.tag == 'nihil'){
+        new Subtype(type: type, block: false, pointsCount: 0, restore: false).save()
+    }
 }
