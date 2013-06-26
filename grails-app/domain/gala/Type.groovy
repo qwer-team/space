@@ -6,11 +6,11 @@ class Type {
     
     String name
     String tag
-    Integer a = 0
-    Integer b = 0
-    Integer c = 0
-    Integer delta1 = 0
-    Integer delta2 = 0
+    Integer a = 5
+    Integer b = 5
+    Integer c = 5
+    Integer delta1 = 25
+    Integer delta2 = 25
     String message1
     String message2
     String message3
