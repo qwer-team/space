@@ -107,4 +107,16 @@ class SubelementController {
         def resp = [result: "success"]
         render resp as JSON
     }
+    
+    def restore(){
+        def data = [
+            subelement: Integer.parseInt(params.subelement),
+            x:  Integer.parseInt(params.x),
+            y:  Integer.parseInt(params.y),
+            z:  Integer.parseInt(params.z),
+        ]
+        
+        event([topic: "restoreSubelement", data: data])
+        render ([result: 'success'] as JSON)
+    }
 }
