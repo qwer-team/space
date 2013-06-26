@@ -2,7 +2,8 @@ package gala
 
 import grails.converters.JSON
 class PrizeElementController {
-
+    //TODO
+    def basketUrl = 'http://gala.my/';
     def includeList = [
             'name',
             'available',
@@ -68,9 +69,26 @@ class PrizeElementController {
     def delete(Integer id){
         //todo
         def element = PrizeElement.get(id)
-        element.delete()
+        def subelements = Subelement.findAllByElement(element);
+        def success = true
+        if(subelements.size() > 0){
+            success = false
+        } else {
+            def data = JSON.parse( 
+                new URL( "${basketUrl}elements/${id}/count.json" ).text 
+            )
+            
+            if(data.count > 0){
+                success = false
+            }
+        }
         
-        render ([result: 'success'] as JSON)
+        if(success){
+            element.delete()
+        }
+        
+        
+        render ([result: success?'success':'fail'] as JSON)
     }
     
     def list(){
