@@ -60,13 +60,12 @@ class SubelementController {
     
     def save(Long id){
         def segment = PrizeSegment.get(id)
-        def element = PrizeElement.get(params.prizeElementId)
+        def element = PrizeElement.get(params.elementId)
         println params
         def props = [
             element: element, 
             segment: segment, 
-            pointsCount: params.pointsCount,
-            block: params.block != '',
+            prizeCount: params.prizeCount,
             restore: params.restore != ''
         ] 
         def subelement = new Subelement(props)
@@ -80,8 +79,7 @@ class SubelementController {
     
     def update(Long id){
         def subtype = Subelement.get(params.id)
-        subtype.pointsCount = Integer.parseInt(params.pointsCount)
-        subtype.block = params.block
+        subtype.prizeCount = Integer.parseInt(params.prizeCount)
         subtype.restore = params.restore
         
         if(!subtype.save()){
@@ -95,7 +93,7 @@ class SubelementController {
     def getPrizesOnSegment(Long id) {
         def segment = PrizeSegment.get(id)
         def response = [
-            types: Prize.list(), 
+            prizes: Prize.list(), 
             subelements: Subelement.findAllBySegment(segment),
             length: segment.length]
         render response as JSON
