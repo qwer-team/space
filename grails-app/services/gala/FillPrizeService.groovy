@@ -2,7 +2,7 @@ package gala
 
 import groovyx.gpars.GParsPool
 import space.ArrayMix
-class FillService {
+class FillPrizeService {
     static transactional = false
     def inWork = false 
     def sessionFactory 
@@ -11,23 +11,21 @@ class FillService {
     private setInWork(inWork){
         this.inWork = inWork
     }
-    def fillSegment(Segment segment){
-        println 'prize seg'
+    def fillSegment(PrizeSegment segment){
         if(inWork){
             println 'inWork!';
             return
         } else {
-            println 'fill prize'
             inWork = true
         }
-        def types = getTypes(segment.subtypes)
+        def types = getTypes(segment.subelements)
         segmentId = segment.id
         println types
         fill(segment.start, segment.length, types)
         inWork = false
     }
     def fill(start, length, types) {
-        println "fill $start, $length, $types"
+        println "fill $start, $length, ${types}"
         def subtypes = mix(length, types)
         def cnt = 0
         def step = 1000
@@ -37,8 +35,8 @@ class FillService {
             persistenceInterceptor.init()
             def session = sessionFactory.currentSession
             def tx = session.beginTransaction()
-            def queryStart = "INSERT INTO point (id, subtype) VALUES "
-            def queryEnd = " ON DUPLICATE KEY UPDATE point.subtype = VALUES(subtype)"
+            def queryStart = "INSERT INTO point (id, subelement, subtype) VALUES "
+            def queryEnd = " ON DUPLICATE KEY UPDATE point.subelement = VALUES(subelement)"
             
             def portion = step;
             (strt..<endd).step(step){
@@ -51,18 +49,24 @@ class FillService {
                 def updates = []
                 def ids = []
                 ((offset+1)..(offset+max)).each{
-                    def update = " ( ${it}, ${subtypes[cnt++]}) "
-                    ids << it
-                    updates << update
+                    if(cnt + 1 < length){
+                        def stype = subtypes[cnt++];
+                        if(stype == -1){
+                            stype = 'null'
+                        }
+                        def update = " ( ${it}, ${stype}, 10) "
+                        ids << it
+                        updates << update
+                    }
                 }
                 
-                def queryStr = queryStart + updates.join(",") + queryEnd 
+                def queryStr = queryStart + updates.join(",") + queryEnd
                 def query = session.createSQLQuery(queryStr)
                 query.executeUpdate()
                 portion += step
                 if(portion >= 10000){
                     def data = [id: segmentId, portion: portion]
-                    event([topic: "loadingProgressInfo", data: data])
+                    event([topic: "loadingPrizeProgressInfo", data: data])
                     portion = 0
                 }
             }
@@ -89,7 +93,7 @@ class FillService {
                 frst = end
             }
             println "diaps: $diaps"
-            diaps.eachParallel{
+            diaps.each{
 	        System.sleep(800*it[2])
                 fillit(it[0], it[1])
             }
@@ -98,13 +102,17 @@ class FillService {
     }
     
     def mix(length, types) {
-        space.ArrayMix.mix(length, types)
+        def res = space.ArrayMix.mix(length, types, -1)
+        res
     }
     
-    def getTypes(subtypes){
+    def getTypes(subelements){
         def types = [:]
-        subtypes.each{
-            types[it.id as int] = it.pointsCount
+        subelements.each{
+            if(!it.single){
+                println "it ${it.id} ${it.prizeCount}"
+                types[it.id as int] = it.prizeCount
+            }
         }
         types
     }

@@ -8,11 +8,13 @@ public class ArrayMix {
 
     public static void main(String[] argv) {
         HashMap<Integer, Integer> types = new HashMap<Integer, Integer>();
-        types.put(3, 2342342);
         ArrayMix.mix(1000000000, types);
     }
 
-    public static int[] mix(int total, Map<Integer, Integer> types) {
+    public static int[] mix(int total, Map<Integer, Integer> types){
+        return mix( total, types, 1);
+    }
+    public static int[] mix(int total, Map<Integer, Integer> types, Integer defValue) {
         int[] arr = new int[total];
 
         int cnt = 0;
@@ -24,7 +26,7 @@ public class ArrayMix {
             }
         }
         for (int i = cnt; i < total; i++) {
-            arr[cnt] = 1;
+            arr[cnt] = defValue;
             cnt++;
         }
 
