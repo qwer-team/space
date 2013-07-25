@@ -34,6 +34,11 @@ class PointService {
         }
     }
     
+    @grails.events.Listener
+    def changeSubelementListener(data){
+        changeSubelement(data.x,data.y,data.z,data.point)
+    }
+    
     def changeSubelement(x,y,z,point, restore = false){
         if(point.subelement == null){
             return
@@ -68,6 +73,10 @@ class PointService {
             point.subelement = null
             point.save()
         }
+    }
+    @grails.events.Listener
+    def changeSubtypeListener(data){
+        changeSubtype(data.x,data.y,data.z,data.point)
     }
     
     def changeSubtype(x,y,z,point){
