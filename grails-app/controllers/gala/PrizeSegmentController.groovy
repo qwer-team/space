@@ -4,6 +4,9 @@ import grails.converters.JSON
 class PrizeSegmentController {
 
     def segmentService
+    def index() { 
+        [segments: PrizeSegment.list()]
+    }
     def reset(Integer number) {
         def response 
         try{
