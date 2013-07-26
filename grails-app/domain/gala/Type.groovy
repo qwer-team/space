@@ -14,11 +14,11 @@ class Type {
     String message1
     String message2
     String message3
-    Boolean onCost
-    Integer cost
+    Boolean messActive
+    Integer messCost
     Boolean onBet
-    Integer bet
-    Integer betType
+    Integer messCountCost
+    Boolean messCountDepActive
     Boolean onReturn
     Integer returnValue
     Boolean returnInPercent
@@ -32,11 +32,11 @@ class Type {
         message1 nullable: true
         message2 nullable: true
         message3 nullable: true
-        onCost nullable: true
-        cost nullable: true
+        messActive nullable: true
+        messCost nullable: true
         onBet nullable: true
-        bet nullable: true
-        betType nullable: true
+        messCountCost nullable: true
+        messCountDepActive nullable: true
         onReturn nullable: true
         returnValue nullable: true
         returnInPercent nullable: true

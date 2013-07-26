@@ -12,6 +12,10 @@ class UrlMappings {
                         tag(nullable:false)
                     }
                 }
+                "/getpoint/type/$x/$y/$z"{
+                    controller = "pointType"
+                    action = "getPointType"
+                }
                 "/segment/reset/$number?"{
                     controller = "segment"
                     action = "reset"

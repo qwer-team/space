@@ -1,18 +1,13 @@
 package gala
 
 import grails.converters.JSON
-class JumpController {
+class PointTypeController {
 
-    def proceed(Integer x, Integer y, Integer z) { 
+    def getPointType(Integer x, Integer y, Integer z) {
         def id = x + (y - 1) * 10**3 + (z - 1) * 10**6
         def point = Point.get(id)
         
-        def eventData = [
-            point: point,
-            x: x, 
-            y: y, 
-            z: z,
-        ]
+        
         def subtype = Subtype.get(point.subtype)
         def type = subtype.type
         def subelement = null
@@ -27,8 +22,7 @@ class JumpController {
             subelement: subelement,
             element: element,
         ]
-        event([topic: "coordinatesChange", data: eventData])
+        
         render data as JSON
     }
-    
 }
