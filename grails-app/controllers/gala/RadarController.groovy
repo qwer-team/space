@@ -27,7 +27,9 @@ class RadarController {
                 subtype =  Subtype.get(point.subtype)
                 event([topic: "changeSubtypeListener", data: eventData])
             }
+
             result = [result: "success", point: point, subelement: subelement, subtype: subtype]
+
         } else {
             result = [result: "fail"]
         }

@@ -58,6 +58,7 @@ class SubelementController {
         render([result: 'success'] as JSON)
     }
     
+
     def getSubelement(Integer id){
         def subelement = Subelement.get(id)
         def element = PrizeElement.get(subelement.elementId)
@@ -72,7 +73,7 @@ class SubelementController {
         ]
         render data as JSON
     }
-    
+
     def save(Long id){
         def segment = PrizeSegment.get(id)
         def element = PrizeElement.get(params.elementId)

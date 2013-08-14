@@ -50,12 +50,14 @@ class SubtypeController {
         render resp as JSON
     }
     
+
     def getSubtype(Integer id){
         def subtype = Subtype.get(id)
         render subtype as JSON
         
     }
     
+
     def remove(Long id){
         Subtype.get(params.id).delete()
         println 'subtype removed'
