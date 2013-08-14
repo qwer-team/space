@@ -16,7 +16,7 @@ class UrlMappings {
                     controller = "pointType"
                     action = "getPointType"
                 }
-<<<<<<< HEAD
+
                 "/getsubelement/$id"{
                     controller = "subelement"
                     action = "getSubelement"
@@ -26,8 +26,7 @@ class UrlMappings {
                     controller = "subtype"
                     action = "getSubtype"
                 }
-=======
->>>>>>> 41e462875fe9a0d69e82be19e8622ab62a0b5537
+
                 "/segment/reset/$number?"{
                     controller = "segment"
                     action = "reset"
