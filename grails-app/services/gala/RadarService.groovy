@@ -38,7 +38,7 @@ class RadarService {
         }
         def size = ids.size()
         for(def i = 0; i < size; i++){
-<<<<<<< HEAD
+
            
             def point = points[i]
             if(point != null){
@@ -55,21 +55,7 @@ class RadarService {
                     break;
                 }
             }
-=======
-            def point = points[i]
-            if(prize){
-                if(point.subelement){
-                    res = point
-                }
-            } else {
-                if((point.subtype as Long) in subtypes){
-                    res = point
-                }
-            }
-            if(res){
-                break;
-            }
->>>>>>> 41e462875fe9a0d69e82be19e8622ab62a0b5537
+
         }
         clear()
         res
@@ -81,15 +67,10 @@ class RadarService {
         if(!subtypesCache.containsKey(type)){
             def tag
             switch(type){
-<<<<<<< HEAD
             case 1: tag = "plus_percent"; break; 
             case 2: tag = "plus_all_period"; break; 
             case 3: tag = "plus_prize_period"; break; 
-=======
-                case 1: tag = "plus_percent"; break; 
-                case 2: tag = "plus_all_period"; break; 
-                case 3: tag = "plus_prize_period"; break; 
->>>>>>> 41e462875fe9a0d69e82be19e8622ab62a0b5537
+
             }
             def pointType = Type.findByTag(tag)
             def types = Subtype.findAllByType(pointType)
