@@ -31,11 +31,12 @@ environments {
     production {
         dataSource {
             username = 'root'
-            password = '123'
+            password = 'Sql-Pw'
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost:3306/gala"
-            driverClassName = "org.gjt.mm.mysql.Driver"
+            url = "jdbc:mysql://localhost:3306/gala?useUnicode=yes&characterEncoding=UTF-8"
+            driverClassName = "com.mysql.jdbc.Driver"
             logSql = false
         }
     }
 }
+
