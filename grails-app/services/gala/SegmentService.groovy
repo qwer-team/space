@@ -2,7 +2,7 @@ package gala
 
 class SegmentService {
     static transactional = true
-    def space = 10000000
+    def space = 1000000000
     def domainClassname = "gala.Segment";
     def grailsApplication
     def reset(number) {
