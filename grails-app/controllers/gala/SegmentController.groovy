@@ -22,6 +22,7 @@ class SegmentController {
     
     def update(Long id){
         def segment = Segment.get(id)
+       
         segment.properties = params
         segment.save()
         
