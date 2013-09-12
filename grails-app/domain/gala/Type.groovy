@@ -27,6 +27,7 @@ class Type {
     Boolean nextStepInPercent
     Integer hours
     Integer minutes
+    String  parameter
     
     static constraints = {
         message1 nullable: true
@@ -46,6 +47,7 @@ class Type {
         tag nullable: true
         hours nullable: true
         minutes nullable: true
+        parameter nullable: true
     }
 }
 
