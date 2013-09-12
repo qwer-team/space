@@ -36,11 +36,11 @@ class SubtypeController {
     }
     
     def update(Long id){
-        def subtype = Subtype.get(params.id)
+        def subtype = Subtype.get(id)
         subtype.pointsCount = Integer.parseInt(params.pointsCount)
-        subtype.block = params.block
-        subtype.restore = params.restore
-        subtype.parameter = Integer.parseInt(params.parameter)
+        subtype.block = params.block != "0"
+        subtype.restore = params.restore != "0"
+        subtype.parameter = Integer.parseInt(params.parameter ? params.parameter : "0")
         
         if(!subtype.save()){
             throw new Exception("subtype wasnt updated!!!");
