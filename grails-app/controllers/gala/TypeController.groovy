@@ -9,7 +9,8 @@ class TypeController {
     }
     
     def update(){
-        def type = Type.get(params.id)
+        println params
+        def type = Type.get(Integer.parseInt(params.id))
         def includeList = [
             'message1',
             'message2',
@@ -27,6 +28,7 @@ class TypeController {
             'nextStepInPercent',
             'hours',
             'minutes',
+            'image',
         ]
         bindData(type, params, [include: includeList])
         type.save()

@@ -28,6 +28,7 @@ class Type {
     Integer hours
     Integer minutes
     String  parameter
+    String  image
     
     static constraints = {
         message1 nullable: true
@@ -48,6 +49,7 @@ class Type {
         hours nullable: true
         minutes nullable: true
         parameter nullable: true
+        image nullable: true
     }
 }
 
