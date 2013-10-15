@@ -28,7 +28,14 @@ class Type {
     Integer hours
     Integer minutes
     String  parameter
-    String  image
+    String  file1
+    String  file2
+    String  file3
+    String  file4
+    Boolean  fileDelete1
+    Boolean  fileDelete2
+    Boolean  fileDelete3
+    Boolean  fileDelete4
     
     static constraints = {
         message1 nullable: true
@@ -49,7 +56,14 @@ class Type {
         hours nullable: true
         minutes nullable: true
         parameter nullable: true
-        image nullable: true
+        file1 nullable: true
+        file2 nullable: true
+        file3 nullable: true
+        file4 nullable: true
+        fileDelete1 nullable: true
+        fileDelete2 nullable: true
+        fileDelete3 nullable: true
+        fileDelete4 nullable: true
     }
 }
 

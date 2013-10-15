@@ -28,7 +28,14 @@ class TypeController {
             'nextStepInPercent',
             'hours',
             'minutes',
-            'image',
+            'file1',
+            'file2',
+            'file3',
+            'file4',
+            'fileDelete1', 
+            'fileDelete2',
+            'fileDelete3',
+            'fileDelete4',
         ]
         bindData(type, params, [include: includeList])
         type.save()
