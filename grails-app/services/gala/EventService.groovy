@@ -28,11 +28,8 @@ class EventService {
         def response = [id: segment.id, length: segment.length]
         println segment
         progress[segment.id] = [length: segment.length, portion: 0]
-        try{
-        event([namespace: "browser", topic: "startLoading", data: response])
-        } catch(e){
-            println e.message
-        }
+        event([namespace: "browser", topic: "spaceStartLoading", data: response]);
+        event([namespace: "browser", topic: "spaceStartLoading", data: response]);
         fillService.fillSegment(segment)
         progress[segment.id] = [length: segment.length, portion: segment.length]
         event([namespace: "browser", topic: "endLoading", data: response])
