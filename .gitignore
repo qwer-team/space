@@ -36,6 +36,8 @@
 
 # "temporary" build files
 /target
+/tomcat.8080
 
 # other
 *.iws
+.idea/
