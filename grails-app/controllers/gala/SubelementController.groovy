@@ -117,10 +117,14 @@ class SubelementController {
     }
     
     def remove(Long id){
-        Subelement.get(params.id).delete()
+        def atata = Subelement.get(params.id)
+        def pointInstance = Point.get(atata.pointId)
+        pointInstance.subelement = null
+        atata.delete()
         def resp = [result: "success"]
         render resp as JSON
     }
+    
     
     def restore(){
         def data = [
